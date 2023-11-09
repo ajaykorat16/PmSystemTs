@@ -107,6 +107,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     const login = async (email: string, password: string) => {
         try {
+            console.log(baseURL)
             const { data } = await axios.post(`${baseURL}/user/login`, { email, password });
 
             if (data.error === false) {

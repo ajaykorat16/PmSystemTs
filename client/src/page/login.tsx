@@ -1,9 +1,9 @@
-import React, { useEffect, useState, FormEvent } from 'react';
+import React, { useEffect, useState, FormEvent, useRef } from 'react';
 import CIcon from '@coreui/icons-react';
 import { CButton, CCard, CCardBody, CCardGroup, CCol, CContainer, CForm, CFormInput, CInputGroup, CInputGroupText, CRow } from '@coreui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import Toast  from 'primereact/toast';
+import { Toast } from 'primereact/toast';
 import { cilLockLocked, cilUser } from '@coreui/icons';
 
 interface LoginProps { }
@@ -11,13 +11,17 @@ interface LoginProps { }
 const Login: React.FC<LoginProps> = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const { auth, login, toast } = useAuth();
+    const { auth, login } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+
+    const toast = useRef<Toast | null>(null);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         try {
+            console.log("hello")
+            console.log("email---->", email, password)
             login(email, password);
         } catch (error) {
             console.log(error);
@@ -28,11 +32,12 @@ const Login: React.FC<LoginProps> = () => {
         if (auth?.token) {
             location.pathname !== '/'
                 ? navigate(location.pathname)
-                : auth.user.role === 'user'
+                : auth.user?.role === 'user' // Add the null check here
                     ? navigate('/dashboard-user/employee')
                     : navigate('/dashboard/admin');
         }
     }, [auth?.token, navigate]);
+
 
     return (
         <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
