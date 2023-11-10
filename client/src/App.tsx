@@ -1,7 +1,7 @@
 // import AdminRoutes from './components/Routes/AdminRoutes';
 // import DefaultLayout from './pages/DefaultLayout';
 // import DepartmentCreate from './pages/DepartmentCreate';
-// import DepartmentList from './pages/DepartmentList';
+import DepartmentList from './page/admin/DepartmentList';
 // import DepartmentUpdate from './pages/DepartmentUpdate';
 // import LeaveCreate from './pages/LeaveCreate';
 // import LeaveList from './pages/LeaveList';
@@ -39,6 +39,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="department/list" element={<DepartmentList title="Department List" />} />
         {/* <Route path="/dashboard" element={<AdminRoutes />}>
           <Route path="admin" element={<DefaultLayout />} />
           <Route path="user/list" element={<UserList title="User List" />} />
@@ -51,7 +52,6 @@ function App() {
           <Route path="leave/create" element={<LeaveCreate title="Leave Create" />} />
           <Route path="leave/update/:id" element={<LeaveUpdate title="Leave Update" />} />
           <Route path="manageMonthlyLeave/list" element={<LeaveManagementList title="Manage Monthly Leave" />} />
-          <Route path="department/list" element={<DepartmentList title="Department List" />} />
           <Route path="department/create" element={<DepartmentCreate title="Create Department" />} />
           <Route path="department/update/:id" element={<DepartmentUpdate title="Department Update" />} />
           <Route path="project/list" element={<ProjectList title="Project List" />} />

@@ -13,6 +13,7 @@ interface IProject {
 }
 
 interface AuthUser {
+    _id?:string;
     employeeNumber: number;
     firstname: string;
     lastname: string;

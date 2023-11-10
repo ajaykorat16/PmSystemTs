@@ -5,14 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css'
 import { AuthProvider } from './contexts/AuthContext.tsx';
 import { StoreProvider } from './store/store.tsx';
+import { DepartmentProvider } from './contexts/DepartmentContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <React.StrictMode>
       <AuthProvider>
-        <StoreProvider>
-          <App />
-        </StoreProvider>
+        <DepartmentProvider>
+          <StoreProvider>
+            <App />
+          </StoreProvider>
+        </DepartmentProvider>
       </AuthProvider>
     </React.StrictMode>,
   </BrowserRouter>
