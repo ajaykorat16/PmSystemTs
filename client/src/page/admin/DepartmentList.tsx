@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useDepartment } from '../../contexts/DepartmentContext';
@@ -11,6 +11,8 @@ import Layout from '../Layout';
 import Loader from '../../components/Loader';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { CButton } from '@coreui/react';
+import "../../styles/Styles.css";
+import { Toast } from 'primereact/toast';
 
 interface DepartmentListProps {
     title: string;
@@ -18,7 +20,7 @@ interface DepartmentListProps {
 
 const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
     const { getDepartment, deleteDepartment } = useDepartment();
-    const { toast, auth } = useAuth();
+    const { auth } = useAuth();
     const [isLoading, setIsLoading] = useState(true);
     const [departmentList, setDepartmentList] = useState([]);
     const [totalRecords, setTotalRecords] = useState(0);
@@ -28,11 +30,11 @@ const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
     const [sortField, setSortField] = useState('createdAt');
     const [sortOrder, setSortOrder] = useState(-1);
     const navigate = useNavigate();
+    const toastRef = useRef<Toast | null>(null);
 
     const fetchDepartments = async (currentPage: number, rowsPerPage: number, query: string, sortField: string, sortOrder: any) => {
         setIsLoading(true);
         let departmentData = await getDepartment(currentPage, rowsPerPage, query, sortField, sortOrder);
-        console.log(departmentData);
 
         const totalRecordsCount = departmentData.totalDepartments;
         setTotalRecords(totalRecordsCount);
@@ -92,7 +94,7 @@ const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
     };
 
     return (
-        <Layout title={title} >
+        <Layout title={title} toast={toastRef} >
             {isLoading ? (
                 <Loader />
             ) : (
@@ -133,7 +135,7 @@ const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
                             totalRecords={totalRecords}
                             lazy
                             sortField={sortField}
-                            //   sortOrder={sortOrder}
+                            sortOrder={sortOrder}
                             onSort={handleSorting}
                             paginator
                             rows={rowsPerPage}

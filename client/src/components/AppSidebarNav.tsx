@@ -24,14 +24,23 @@ interface AppSidebarNavProps {
 const AppSidebarNav: React.FC<AppSidebarNavProps> = ({ items }) => {
     const location = useLocation();
 
-    const navLink = (name: string, icon?: React.ReactNode, badge?: Badge) => (
+    const navLink = (name: string, icon?: React.ReactNode, badge?: Badge, to?: string) => (
         <>
             {icon && icon}
-            {name && name}
+            {name && (
+                <span className="nav-link-text">
+                    <span>{name}</span>
+                </span>
+            )}
             {badge && (
                 <CBadge color={badge.color} className="ms-auto">
                     {badge.text}
                 </CBadge>
+            )}
+            {to && (
+                <NavLink to={to} className="nav-link">
+                    {/* Add your NavLink styling here */}
+                </NavLink>
             )}
         </>
     );
@@ -50,7 +59,7 @@ const AppSidebarNav: React.FC<AppSidebarNavProps> = ({ items }) => {
                 key={index}
                 {...rest}
             >
-                {navLink(name, icon, badge)}
+                {navLink(name, icon, badge, rest.to)}
             </Component>
         );
     };
