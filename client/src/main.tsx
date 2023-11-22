@@ -6,15 +6,18 @@ import './index.css'
 import { AuthProvider } from './contexts/AuthContext.tsx';
 import { StoreProvider } from './store/store.tsx';
 import { DepartmentProvider } from './contexts/DepartmentContext.tsx';
+import { UserProvider } from './contexts/UserContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <React.StrictMode>
       <AuthProvider>
         <DepartmentProvider>
-          <StoreProvider>
-            <App />
-          </StoreProvider>
+          <UserProvider>
+            <StoreProvider>
+              <App />
+            </StoreProvider>
+          </UserProvider>
         </DepartmentProvider>
       </AuthProvider>
     </React.StrictMode>

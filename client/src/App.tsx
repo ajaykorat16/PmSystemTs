@@ -8,7 +8,7 @@ import DepartmentUpdate from './page/admin/DepartmentUpdate';
 // import LeaveUpdate from './pages/LeaveUpdate';
 // import Login from './pages/Login';
 // import UserCreate from './pages/UserCreate';
-// import UserList from './pages/UserList';
+import UserList from './page/UserList';
 // import UserUpdate from './pages/UserUpdate';
 // import UserProfile from './pages/UserProfile';
 // import AdminProfile from './pages/AdminProfile';
@@ -44,6 +44,7 @@ function App() {
           <Route path="department/list" element={<DepartmentList title="Department List" />} />
           <Route path="department/create" element={<DepartmentCreate title="Create Department" />} />
           <Route path="department/update/:id" element={<DepartmentUpdate title="Department Update" />} />
+          <Route path="user/list" element={<UserList title="User List" />} />
         </Route>
       </Routes>
       {/* // <Route path="admin" element={<DefaultLayout />} />
