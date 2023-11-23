@@ -72,7 +72,7 @@ const UserList: React.FC<UserListProps> = ({ title }) => {
         }
     }, [globalFilterValue, rowsPerPage, sortField, sortOrder]);
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (id: string) => {
         confirmDialog({
             message: 'Are you sure you want to delete this user?',
             header: 'Delete Confirmation',
@@ -101,7 +101,7 @@ const UserList: React.FC<UserListProps> = ({ title }) => {
         fetchUsers(currentPage, rowsPerPage, globalFilterValue, field, order.toString());
     };
 
-    const handleLogin = async (id: number) => {
+    const handleLogin = async (id: string) => {
         const { getProfile } = await getUserProfile(id)
         await loginUserByAdmin(getProfile.email)
         navigate("/")
