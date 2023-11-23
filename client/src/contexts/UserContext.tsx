@@ -6,14 +6,14 @@ import axios from 'axios';
 interface UserContextType {
     fetchUsers: () => Promise<any>;
     createUser: (addUser: any) => Promise<any>;
-    updateUser: (updateUsers: any, id: string) => Promise<any>;
-    deleteUser: (id: string) => Promise<void>;
-    getUserProfile: (id: string) => Promise<any>;
+    updateUser: (updateUsers: any, id: number) => Promise<any>;
+    deleteUser: (id: number) => Promise<void>;
+    getUserProfile: (id: number) => Promise<any>;
     updateProfile: (updateUsers: any) => Promise<any>;
     resetPassword: (password: string) => Promise<any>;
     getAllUsers: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
     getAllEmployee: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
-    getAllUsersByBirthMonth: (page: number, limit: number, query?: any) => Promise<any>;
+    getAllUsersByBirthMonth: (page: number, limit: number, query: any) => Promise<any>;
     userForCredential: () => Promise<any>;
 }
 
@@ -68,7 +68,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const updateUser = async (updateUsers: any, id: string) => {
+    const updateUser = async (updateUsers: any, id: number) => {
         try {
             let { employeeNumber, firstname, lastname, email, phone, address, dateOfBirth, department, dateOfJoining, photo, projects } = updateUsers;
 
@@ -100,7 +100,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const deleteUser = async (id: string) => {
+    const deleteUser = async (id: number) => {
         try {
             const { data } = await axios.delete(`${baseURL}/user/deleteProfile/${id}`, { headers });
             if (data.error === false) {
@@ -112,7 +112,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const getUserProfile = async (id: string) => {
+    const getUserProfile = async (id: number) => {
         try {
             const { data } = await axios.get(`${baseURL}/user/getUserProfile/${id}`, { headers });
             return data;
