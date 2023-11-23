@@ -8,7 +8,7 @@ interface UserContextType {
     createUser: (addUser: any) => Promise<any>;
     updateUser: (updateUsers: any, id: number) => Promise<any>;
     deleteUser: (id: number) => Promise<void>;
-    getUserProfile: (id: number) => Promise<any>;
+    getUserProfile: (id: string) => Promise<any>;
     updateProfile: (updateUsers: any) => Promise<any>;
     resetPassword: (password: string) => Promise<any>;
     getAllUsers: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
@@ -112,7 +112,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const getUserProfile = async (id: number) => {
+    const getUserProfile = async (id: string) => {
         try {
             const { data } = await axios.get(`${baseURL}/user/getUserProfile/${id}`, { headers });
             return data;

@@ -26,7 +26,7 @@ const DepartmentProvider: React.FC<DepartmentProviderProps> = ({ children }) => 
     };
 
     // getDepartments
-    const getDepartment = async (page: number, limit: number, query: string, sortField: string, sortOrder: any) => {
+    const getDepartment = async (page: number, limit: number, query: string, sortField: string, sortOrder: string) => {
         try {
             let queryUrl = '';
             if (query) { queryUrl = `&query=${query}`; }
