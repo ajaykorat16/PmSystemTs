@@ -7,9 +7,9 @@ import { useUser } from '../../contexts/UserContext';
 import Layout from '../Layout';
 import Loader from '../../components/Loader';
 import { useAuth } from '../../contexts/AuthContext';
-import { useHelper } from '../../contexts/Helper';
 import { useDepartment } from '../../contexts/DepartmentContext';
 import { useProject } from '../../contexts/ProjectContext';
+import { useHelper } from '../../contexts/Helper';
 
 const UserUpdate: React.FC<{ title: string }> = ({ title }) => {
     const [employeeNumber, setEmployeeNumber] = useState<string>("");
@@ -223,7 +223,6 @@ const UserUpdate: React.FC<{ title: string }> = ({ title }) => {
                                 onChange={(e) => setDateOfJoining(e.target.value as Date)}
                                 showIcon
                                 id="date"
-                                className="form-control"
                             />
                         </CCol>
                         <CCol xs={6}>
@@ -235,7 +234,6 @@ const UserUpdate: React.FC<{ title: string }> = ({ title }) => {
                                 maxDate={new Date()}
                                 showIcon
                                 id="date"
-                                className="form-control"
                             />
                         </CCol>
                         <CCol xs={6}>
