@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { DataTable } from 'primereact/datatable';
+import { DataTable, DataTableStateEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useDepartment } from '../../contexts/DepartmentContext';
 import { useNavigate } from 'react-router-dom';
@@ -28,11 +28,11 @@ const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const [sortField, setSortField] = useState('createdAt');
-    const [sortOrder, setSortOrder] = useState(-1);
+    const [sortOrder, setSortOrder] = useState<any>(-1);
     const navigate = useNavigate();
     const toastRef = useRef<Toast | null>(null);
 
-    const fetchDepartments = async (currentPage: number, rowsPerPage: number, query: string, sortField: string, sortOrder: any) => {
+    const fetchDepartments = async (currentPage: number, rowsPerPage: number, query: string, sortField: string, sortOrder: string) => {
         setIsLoading(true);
         let departmentData = await getDepartment(currentPage, rowsPerPage, query, sortField, sortOrder);
 
@@ -84,13 +84,21 @@ const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
         setRowsPerPage(newRowsPerPage);
     };
 
-    const handleSorting = async (e: { sortField: string; sortOrder: any }) => {
-        const field = e.sortField;
-        const order = e.sortOrder;
+    // const handleSorting = async (e: { sortField: string; sortOrder: any }) => {
+    //     const field = e.sortField;
+    //     const order = e.sortOrder;
 
+    //     setSortField(field);
+    //     setSortOrder(order);
+    //     fetchDepartments(currentPage, rowsPerPage, globalFilterValue, field, order);
+    // };
+
+    const handleSorting = async (e: DataTableStateEvent) => {
+        const field = e.sortField;
+        const order = e.sortOrder!;
         setSortField(field);
         setSortOrder(order);
-        fetchDepartments(currentPage, rowsPerPage, globalFilterValue, field, order);
+        fetchDepartments(currentPage, rowsPerPage, globalFilterValue, field, order.toString());
     };
 
     return (
