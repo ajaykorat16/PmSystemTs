@@ -13,7 +13,7 @@ interface UserContextType {
     resetPassword: (password: string) => Promise<any>;
     getAllUsers: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
     getAllEmployee: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
-    getAllUsersByBirthMonth: (page: number, limit: number, query: any) => Promise<any>;
+    getAllUsersByBirthMonth: (page: number, limit: number, query?: any) => Promise<any>;
     userForCredential: () => Promise<any>;
 }
 

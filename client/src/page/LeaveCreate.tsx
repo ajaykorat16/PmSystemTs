@@ -227,7 +227,7 @@ const LeaveCreate: React.FC<LeaveCreateProps> = ({ title }) => {
                     <label className="form-label">Leave End</label>
                     <Calendar
                         value={endDate}
-                        // minDate={startDate}
+                        minDate={startDate || undefined}
                         dateFormat="dd-mm-yy"
                         onChange={(e) => setEndDate(e.value || null)}
                         disabled={leaveDayType !== "Multiple Day"}

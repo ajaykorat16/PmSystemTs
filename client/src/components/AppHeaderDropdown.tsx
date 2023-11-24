@@ -23,7 +23,7 @@ const LeaveBalanceDisplay: React.FC<LeaveBalanceDisplayProps> = ({ leaveBalance 
 const AppHeaderDropdown: React.FC = () => {
     const [photo, setPhoto] = useState<string>('');
     const { logout, auth, adminAuth, backToAdmin } = useAuth();
-      const { getUserProfile } = useUser();
+    const { getUserProfile } = useUser();
     const [getAuth, setGetAuth] = useState<any | null>("");
     const [isPhoto, setIsPhoto] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -46,34 +46,34 @@ const AppHeaderDropdown: React.FC = () => {
         }
     };
 
-      const fetchData = async () => {
+    const fetchData = async () => {
         try {
-          if (getAuth && getAuth.user) {
-            const { getProfile } = await getUserProfile(auth.user?._id);
-            setLeaveBalance(getProfile.leaveBalance);
-            if (getProfile?.photo === null) {
-              setPhoto('');
-              setIsPhoto(false);
-            } else {
-              setPhoto(getProfile.photo);
-              setIsPhoto(true);
+            if (getAuth && getAuth.user) {
+                const { getProfile } = await getUserProfile(getAuth.user?._id);
+                setLeaveBalance(getProfile.leaveBalance);
+                if (getProfile?.photo === null) {
+                    setPhoto('');
+                    setIsPhoto(false);
+                } else {
+                    setPhoto(getProfile.photo);
+                    setIsPhoto(true);
+                }
             }
-          }
         } catch (error) {
-          console.error('Error fetching user profile:', error);
+            console.error('Error fetching user profile:', error);
         }
-      };
+    };
 
     useEffect(() => {
         let authdata = JSON.parse(localStorage.getItem('auth') || '{}');
         setGetAuth(authdata);
     }, []);
 
-      useEffect(() => {
+    useEffect(() => {
         if (getAuth && getAuth.user) {
-          fetchData();
+            fetchData();
         }
-      }, [getAuth]);
+    }, [getAuth]);
 
     const handleBackToAdmin = async () => {
         await backToAdmin();
@@ -81,7 +81,7 @@ const AppHeaderDropdown: React.FC = () => {
     };
 
     const redirectPath = auth?.user?.role === "admin" ? `/dashboard/user/admin-profile/${auth?.user?._id}` : `/dashboard-user/user/user-profile/${auth?.user?._id}`;
-
+const path = auth?.user?.role === "admin" ? `/dashboard/user/resetPassword` : `/dashboard-user/user/resetPassword`;
     return (
         <>
             {auth?.user?.role === "user" &&
@@ -103,7 +103,7 @@ const AppHeaderDropdown: React.FC = () => {
                                 <CgProfile className="me-1" fontSize={20} />
                                 Profile
                             </CDropdownItem>
-                            <CDropdownItem onClick={() => navigate(`/dashboard-user/user/resetPassword`)}>
+                            <CDropdownItem onClick={() => navigate(path)}>
                                 <MdOutlineLockReset className="me-1" fontSize={20} />
                                 Reset Password
                             </CDropdownItem>
