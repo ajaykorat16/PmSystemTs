@@ -2,12 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { CForm, CCol, CFormInput, CFormSelect, CButton, CFormTextarea } from '@coreui/react';
 import { Calendar } from 'primereact/calendar';
 import { useNavigate } from 'react-router-dom';
-import Layout from '../Layout';
 import { useUser } from '../../contexts/UserContext';
 import { useDepartment } from '../../contexts/DepartmentContext';
 import { useAuth } from '../../contexts/AuthContext';
-import { Toast } from 'primereact/toast';
 import { useHelper } from '../../contexts/Helper';
+import Layout from '../Layout';
 
 interface UserCreateProps {
     title: string;
@@ -26,7 +25,6 @@ const UserCreate: React.FC<UserCreateProps> = ({ title }) => {
     const [departmentsList, setDepartmentsList] = useState<any[]>([]);
     const [dateOfBirth, setDateOfBirth] = useState<Date | null>(null);
     const [dateOfJoining, setDateOfJoining] = useState<Date | null>(null);
-    const toastRef = useRef<Toast | null>(null);
 
     const { createUser } = useUser();
     const { toast } = useAuth();
@@ -74,7 +72,7 @@ const UserCreate: React.FC<UserCreateProps> = ({ title }) => {
     }, []);
 
     return (
-        <Layout title={title} toast={toastRef}>
+        <Layout title={title} toast={toast}>
             <div className="mb-3">
                 <h2 className='mb-5 mt-2'>Create User</h2>
             </div>

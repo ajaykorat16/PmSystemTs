@@ -37,7 +37,7 @@ const CredentialCreate: React.FC<CredentialCreateProps> = ({ title }) => {
         const redirectPath = auth?.user?.role === 'admin' ? `/dashboard/credential/list` : `/dashboard-user/credential/list`;
         navigate(redirectPath);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error.message);
     }
   };
@@ -52,7 +52,7 @@ const CredentialCreate: React.FC<CredentialCreateProps> = ({ title }) => {
   }, []);
 
   return (
-    <Layout title={title}>
+    <Layout title={title} toast={toast}>
       <div className="mb-3">
         <h2 className="mb-5 mt-2">Create Credentials</h2>
       </div>

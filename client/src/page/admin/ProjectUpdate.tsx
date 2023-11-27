@@ -5,10 +5,10 @@ import { CCol, CFormInput, CButton, CForm } from "@coreui/react";
 import { MultiSelect } from "primereact/multiselect";
 import { Editor } from 'primereact/editor';
 import { Calendar } from "primereact/calendar";
-// import { useHelper } from "../context/Helper";
 import { useAuth } from "../../contexts/AuthContext";
 import { useUser } from "../../contexts/UserContext";
 import { useProject } from "../../contexts/ProjectContext";
+import { useHelper } from "../../contexts/Helper";
 import Layout from "../Layout";
 
 interface ProjectUpdateProps {
@@ -18,12 +18,12 @@ interface ProjectUpdateProps {
 const ProjectUpdate: React.FC<ProjectUpdateProps> = ({ title }) => {
     const { toast } = useAuth();
     const { fetchUsers } = useUser();
-    // const { formatDate, onShow } = useHelper();
+    const { formatDate, onShow } = useHelper();
     const { getSingleProject, updateProject } = useProject();
     const [users, setUsers] = useState<any[]>([]);
     const [name, setName] = useState<string>("");
     const [description, setDescription] = useState<any>("");
-    const [startDate, setStartDate] = useState<Date | undefined>(undefined);
+    const [startDate, setStartDate] = useState<Date | null>(null);
     const [developers, setDevelopers] = useState<string[]>([]);
     const navigate = useNavigate();
     const params = useParams<{ id: any }>();
@@ -50,7 +50,7 @@ const ProjectUpdate: React.FC<ProjectUpdateProps> = ({ title }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            let project = { name, description, startDate, developers: developers };
+            let project = { name, description, startDate: formatDate(startDate), developers: developers };
             let id: any = params.id;
 
             const data = await updateProject(project, id);
@@ -106,7 +106,7 @@ const ProjectUpdate: React.FC<ProjectUpdateProps> = ({ title }) => {
                         optionValue='_id'
                         id="developerSelect"
                         className="form-control"
-                    // onShow={onShow}
+                        onShow={onShow}
                     />
                 </CCol>
                 <CCol md={12}>

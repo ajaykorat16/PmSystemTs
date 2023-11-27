@@ -1,14 +1,13 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, RefObject } from 'react';
 import AppSidebar from '../components/AppSidebar';
 import AppHeader from '../components/AppHeader';
 import { Toast } from 'primereact/toast';
 
 interface LayoutProps {
   children: ReactNode;
-  title?: string;
-  toast?: React.MutableRefObject<Toast | null>;
+  title: string;
+  toast?: any;
 }
-
 
 const Layout: React.FC<LayoutProps> = ({ children, title, toast }) => {
   return (

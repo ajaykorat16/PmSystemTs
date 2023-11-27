@@ -128,7 +128,7 @@ const ManageMonthlyLeave: React.FC<LeaveManagementListProps> = ({ title }) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             {isLoading ? (
                 <Loader />
             ) : (

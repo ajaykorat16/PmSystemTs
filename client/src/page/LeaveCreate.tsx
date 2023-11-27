@@ -119,7 +119,7 @@ const LeaveCreate: React.FC<LeaveCreateProps> = ({ title }) => {
     };
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             <div className="mb-3">
                 <h2 className="mb-5 mt-2">Create Leave</h2>
             </div>

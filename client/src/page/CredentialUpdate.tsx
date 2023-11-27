@@ -32,7 +32,7 @@ const CredentialUpdate: React.FC<CredentialUpdateProps> = ({ title }) => {
         setCredentialTitle(data.title);
         setDescription(data.description);
         if (data.users && data.users.length > 0) {
-          setDevelopers(data.users.map((e:any) => e.id._id));
+          setDevelopers(data.users.map((e: any) => e.id._id));
         } else {
           setDevelopers([]);
         }
@@ -50,7 +50,7 @@ const CredentialUpdate: React.FC<CredentialUpdateProps> = ({ title }) => {
         const redirectPath = auth?.user?.role === "admin" ? `/dashboard/credential/list` : `/dashboard-user/credential/list`;
         navigate(redirectPath);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error?.message);
     }
   };
@@ -65,7 +65,7 @@ const CredentialUpdate: React.FC<CredentialUpdateProps> = ({ title }) => {
   }, []);
 
   return (
-    <Layout title={title}>
+    <Layout title={title} toast={toast}>
       <div className="mb-3">
         <h2 className="mb-5 mt-2">Update Credentials</h2>
       </div>

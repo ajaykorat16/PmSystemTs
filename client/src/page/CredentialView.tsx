@@ -22,7 +22,7 @@ interface CredentialViewProps {
 function CredentialView({ title }: CredentialViewProps) {
     const { id } = useParams<{ id: string }>();
     const { getSingleCredential } = useCredential();
-    const { auth } = useAuth();
+    const { auth, toast } = useAuth();
     const [credentialDetail, setCredentialDetail] = useState<any>({
         title: "",
         description: "",
@@ -41,7 +41,7 @@ function CredentialView({ title }: CredentialViewProps) {
         const fetchCredential = async () => {
             const data = await getSingleCredential(id as string);
             if (data) {
-                const userPhotos = data?.users?.map((user: User): any => user?.id);
+                data?.users?.map((user: User): any => user?.id);
                 setCredentialDetail({
                     title: data.title,
                     description: data.description,
@@ -60,7 +60,7 @@ function CredentialView({ title }: CredentialViewProps) {
     }, [getSingleCredential, id]);
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             <div className="credential">
                 <div className="row credentialLeftBody">
                     <div className="col-11 credentialBody">
@@ -88,14 +88,14 @@ function CredentialView({ title }: CredentialViewProps) {
                                     `data:${credentialDetail?.createdBy?.photo?.contentType};base64, ${credentialDetail?.createdBy?.photo?.data}`
                                 }
                                 icon={!credentialDetail?.createdBy?.photo?.data && 'pi pi-user'}
-                                size={!credentialDetail?.createdBy?.photo?.data ? 'large' : undefined} 
+                                size={!credentialDetail?.createdBy?.photo?.data ? 'large' : undefined}
                                 className="credentialAvatar col-md-3 custom-created-img"
                                 shape="circle"
                                 style={{
                                     width: '70px',
                                     height: '70px',
-                                    backgroundColor: !credentialDetail?.createdBy?.photo?.data ? '#2196F3' : undefined, 
-                                    color: !credentialDetail?.createdBy?.photo?.data ? '#ffffff' : undefined, 
+                                    backgroundColor: !credentialDetail?.createdBy?.photo?.data ? '#2196F3' : undefined,
+                                    color: !credentialDetail?.createdBy?.photo?.data ? '#ffffff' : undefined,
                                     cursor: "pointer",
                                 }}
                             />
@@ -109,14 +109,14 @@ function CredentialView({ title }: CredentialViewProps) {
                                         <Avatar
                                             image={user.photo.data && `data:${user.photo.contentType};base64, ${user.photo.data}`}
                                             icon={!user.photo.data && 'pi pi-user'}
-                                            size={!user.photo.data ? 'large' : undefined} 
+                                            size={!user.photo.data ? 'large' : undefined}
                                             className="credentialAvatar col-md-3 mt-3"
                                             shape="circle"
                                             style={{
                                                 width: '70px',
                                                 height: '70px',
-                                                backgroundColor: !user.photo.data ? '#2196F3' : undefined, 
-                                                color: !user.photo.data ? '#ffffff' : undefined, 
+                                                backgroundColor: !user.photo.data ? '#2196F3' : undefined,
+                                                color: !user.photo.data ? '#ffffff' : undefined,
                                                 cursor: "pointer",
                                             }}
                                         />

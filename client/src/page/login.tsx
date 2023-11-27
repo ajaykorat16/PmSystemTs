@@ -15,13 +15,11 @@ const Login: React.FC<LoginProps> = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const toast = useRef<Toast | null>(null);
+    const toast = useRef<any>();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         try {
-            console.log("hello")
-            console.log("email---->", email, password)
             login(email, password);
         } catch (error) {
             console.log(error);
@@ -32,7 +30,7 @@ const Login: React.FC<LoginProps> = () => {
         if (auth?.token) {
             location.pathname !== '/'
                 ? navigate(location.pathname)
-                : auth.user?.role === 'user' // Add the null check here
+                : auth.user?.role === 'user'
                     ? navigate('/dashboard-user/employee')
                     : navigate('/dashboard/admin');
         }

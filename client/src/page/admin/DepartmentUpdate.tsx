@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CCol, CFormInput, CButton, CForm } from "@coreui/react";
+import { useAuth } from "../../contexts/AuthContext";
 import { useDepartment } from "../../contexts/DepartmentContext";
 import { useNavigate, useParams } from "react-router-dom";
-// import { useAuth } from "../../contexts/AuthContext";
 import Loader from '../../components/Loader'
 import Layout from "../Layout";
 
@@ -16,7 +16,7 @@ const DepartmentUpdate: React.FC<DepartmentUpdateProps> = ({ title }) => {
     const [name, setName] = useState<string>("");
     const [isLoading, setIsLoading] = useState(true);
     const { updateDepartment, getSingleDepartment } = useDepartment();
-    // const { toast } = useAuth();
+    const { toast } = useAuth();
 
     const singleDepartment = async () => {
         if (params.id) {
@@ -48,7 +48,7 @@ const DepartmentUpdate: React.FC<DepartmentUpdateProps> = ({ title }) => {
     };
 
     return (
-        <Layout title={title} >
+        <Layout title={title} toast={toast}>
             {isLoading === true && <Loader />}
             {isLoading === false && (
                 <>

@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import {
-    CButton,
-    CCol,
-    CForm,
-    CFormInput,
-    CInputGroup,
-    CInputGroupText,
-    CRow,
-} from '@coreui/react';
 import CIcon from '@coreui/icons-react';
+import { CButton, CCol, CForm, CFormInput, CInputGroup, CInputGroupText, CRow, } from '@coreui/react';
 import { cilLockLocked } from '@coreui/icons';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
@@ -45,7 +37,7 @@ const ResetPassword: React.FC<{ title: string }> = ({ title }) => {
     };
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             <CForm onSubmit={handleSubmit}>
                 <h1 className="mb-4">Reset Password</h1>
                 <CCol md={4}>

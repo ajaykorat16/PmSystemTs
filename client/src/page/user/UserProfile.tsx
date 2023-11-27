@@ -118,7 +118,7 @@ const UserProfile: React.FC<{ title: string }> = ({ title }) => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',];
 
     return (
-        <Layout title={title} >
+        <Layout title={title} toast={toast}>
             {isLoading === true && <Loader />}
             {isLoading === false && (
                 <>

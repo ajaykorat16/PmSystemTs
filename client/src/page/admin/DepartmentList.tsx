@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DataTable, DataTableStateEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useDepartment } from '../../contexts/DepartmentContext';
@@ -12,7 +12,6 @@ import Loader from '../../components/Loader';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { CButton } from '@coreui/react';
 import "../../styles/Styles.css";
-import { Toast } from 'primereact/toast';
 
 interface DepartmentListProps {
     title: string;
@@ -20,7 +19,7 @@ interface DepartmentListProps {
 
 const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
     const { getDepartment, deleteDepartment } = useDepartment();
-    const { auth } = useAuth();
+    const { auth, toast } = useAuth();
     const [isLoading, setIsLoading] = useState(true);
     const [departmentList, setDepartmentList] = useState([]);
     const [totalRecords, setTotalRecords] = useState(0);
@@ -30,7 +29,6 @@ const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
     const [sortField, setSortField] = useState('createdAt');
     const [sortOrder, setSortOrder] = useState<any>(-1);
     const navigate = useNavigate();
-    const toastRef = useRef<Toast | null>(null);
 
     const fetchDepartments = async (currentPage: number, rowsPerPage: number, query: string, sortField: string, sortOrder: string) => {
         setIsLoading(true);
@@ -102,7 +100,7 @@ const DepartmentList: React.FC<DepartmentListProps> = ({ title }) => {
     };
 
     return (
-        <Layout title={title} toast={toastRef} >
+        <Layout title={title} toast={toast} >
             {isLoading ? (
                 <Loader />
             ) : (

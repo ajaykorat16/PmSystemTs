@@ -6,24 +6,22 @@ import { useNavigate } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-import Loader from "../components/Loader";
-import Layout from "./Layout";
-import "../styles/Styles.css";
 import { CButton } from "@coreui/react";
 import { DOMParser } from 'xmldom';
 import { useCredential } from "../contexts/CredentialContext";
 import { useAuth } from "../contexts/AuthContext";
+import Layout from "./Layout";
+import Loader from "../components/Loader";
+import "../styles/Styles.css";
 
 interface CredentialListProps {
     title: string;
 }
 
-
-
 const CredentialList: React.FC<CredentialListProps> = ({ title }) => {
     const { getAllCredentials, deleteCredentials } = useCredential();
-    const { auth } = useAuth();
     const [isLoading, setIsLoading] = useState(true);
+    const { auth, toast } = useAuth();
     const [credentialList, setCredentialList] = useState<Credential[]>([]); // Specify the type for Credential
     const [totalRecords, setTotalRecords] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -104,7 +102,7 @@ const CredentialList: React.FC<CredentialListProps> = ({ title }) => {
     // }
 
     return (
-        <Layout title={title} >
+        <Layout title={title} toast={toast}>
             {isLoading ? (
                 <Loader />
             ) : (

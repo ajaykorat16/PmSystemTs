@@ -13,7 +13,7 @@ interface IProject {
 }
 
 interface AuthUser {
-    _id?:string;
+    _id?: string;
     employeeNumber: number;
     firstname: string;
     lastname: string;
@@ -76,7 +76,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     });
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const toast = useRef<null | ToastType>(null);
+    const toast = useRef<any>();
 
     const logout = () => {
         try {

@@ -13,6 +13,7 @@ import { Calendar } from "primereact/calendar";
 import { useUser } from "../../contexts/UserContext";
 import { useProject } from "../../contexts/ProjectContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { useHelper } from "../../contexts/Helper";
 import Layout from "../Layout";
 
 interface ProjectCreateProps {
@@ -21,7 +22,7 @@ interface ProjectCreateProps {
 
 const ProjectCreate: React.FC<ProjectCreateProps> = ({ title }) => {
     const { fetchUsers } = useUser();
-    // const { formatDate, onShow } = useHelper();
+    const { formatDate, onShow } = useHelper();
     const { createProject } = useProject();
     const { toast } = useAuth();
     const [users, setUsers] = useState<any[]>([]); // You may need to replace 'any' with a more specific type
@@ -37,8 +38,7 @@ const ProjectCreate: React.FC<ProjectCreateProps> = ({ title }) => {
             const addProject = {
                 name,
                 description,
-                // startDate: startDate ? formatDate(startDate) : null,
-                startDate: startDate,
+                startDate: formatDate(startDate),
                 developers: developers.map((dev) => ({ id: dev._id })),
             };
             const data = await createProject(addProject);
@@ -60,7 +60,7 @@ const ProjectCreate: React.FC<ProjectCreateProps> = ({ title }) => {
     }, []);
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             <div className="mb-3">
                 <h2 className="mb-5 mt-2">Create Project</h2>
             </div>
@@ -102,7 +102,7 @@ const ProjectCreate: React.FC<ProjectCreateProps> = ({ title }) => {
                         placeholder="Select Users"
                         id="developerSelect"
                         className="form-control"
-                    // onShow={onShow}
+                        onShow={onShow}
                     />
                 </CCol>
                 <CCol md={12}>

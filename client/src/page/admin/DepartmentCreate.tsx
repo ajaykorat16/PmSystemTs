@@ -1,10 +1,9 @@
-import React, { useState, FormEvent, useRef } from "react";
+import React, { useState, FormEvent } from "react";
 import { CCol, CFormInput, CButton, CForm } from "@coreui/react";
 import { useDepartment } from "../../contexts/DepartmentContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-// import { useAuth } from "../../contexts/AuthContext";
 import Layout from "../Layout";
-import { Toast } from "primereact/toast";
 
 interface DepartmentCreateProps {
   title: string;
@@ -14,8 +13,7 @@ const DepartmentCreate: React.FC<DepartmentCreateProps> = ({ title }) => {
   const navigate = useNavigate();
   const [name, setName] = useState<string>("");
   const { addDepartment } = useDepartment();
-//   const { toast } = useAuth();
-const toastRef = useRef<Toast | null>(null);
+  const { toast } = useAuth();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -30,7 +28,7 @@ const toastRef = useRef<Toast | null>(null);
   };
 
   return (
-    <Layout title={title} toast={toastRef}>
+    <Layout title={title} toast={toast}>
       <div className="mb-3">
         <h2 className="mb-5 mt-2">Create Department</h2>
       </div>

@@ -117,7 +117,7 @@ const UserUpdate: React.FC<{ title: string }> = ({ title }) => {
     }, []);
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             {isLoading === true && <Loader />}
             {isLoading === false && (
                 <>

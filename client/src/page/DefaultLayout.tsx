@@ -3,7 +3,7 @@ import Layout from './Layout'
 
 function DefaultLayout() {
     return (
-        <Layout>
+        <Layout title='Dashboard'>
             <div>DefaultLayout</div>
         </Layout>
     )

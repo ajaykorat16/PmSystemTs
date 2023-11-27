@@ -114,7 +114,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ title }) => {
     };
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             {isLoading ? (
                 <Loader />
             ) : (

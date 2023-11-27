@@ -122,7 +122,7 @@ const UserList: React.FC<UserListProps> = ({ title }) => {
     }
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             {isLoading ? (
                 <Loader />
             ) : (

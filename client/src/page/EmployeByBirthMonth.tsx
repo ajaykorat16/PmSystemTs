@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import Loader from "../components/Loader";
 import { Dropdown } from "primereact/dropdown";
-import Layout from "./Layout";
 import { Button } from "primereact/button";
 import { Avatar } from "primereact/avatar";
-import "../styles/Styles.css";
 import { CButton, CModal, CModalBody, CModalFooter, CModalHeader, CModalTitle } from "@coreui/react";
 import { useUser } from "../contexts/UserContext";
+import { useAuth } from "../contexts/AuthContext";
+import Loader from "../components/Loader";
+import Layout from "./Layout";
+import "../styles/Styles.css";
 
 interface EmployeeByBirthMonthProps {
     title: string;
@@ -29,6 +30,7 @@ interface UserData {
 
 const EmployeeByBirthMonth: React.FC<EmployeeByBirthMonthProps> = ({ title }) => {
     const { getAllUsersByBirthMonth } = useUser();
+    const { toast } = useAuth()
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [userList, setUserList] = useState<UserData[]>([]);
     const [totalRecords, setTotalRecords] = useState<number>(0);
@@ -97,7 +99,7 @@ const EmployeeByBirthMonth: React.FC<EmployeeByBirthMonthProps> = ({ title }) =>
     ];
 
     return (
-        <Layout title={title}>
+        <Layout title={title} toast={toast}>
             {isLoading ? (
                 <Loader />
             ) : (
