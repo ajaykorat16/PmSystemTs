@@ -4,7 +4,7 @@ import { CNavLink, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from 
 import { AppSidebarNav, NavItem } from './AppSidebarNav';
 import SimpleBar from 'simplebar-react';
 import { useAuth } from '../contexts/AuthContext';
-import adminNavigatiion from './AdminNav';
+import adminNavigation from './AdminNav';
 import userNavigation from './UserNav';
 import { NavLink } from 'react-router-dom';
 // import 'simplebar/dist/simplebar.min.css';
@@ -45,7 +45,7 @@ const AppSidebar: React.FC = () => {
             </CSidebarBrand>
             <CSidebarNav>
                 <SimpleBar>
-                    {role && role === "admin" && <AppSidebarNav items={adminNavigatiion as NavItem[]} />}
+                    {role && role === "admin" && <AppSidebarNav items={adminNavigation as NavItem[]} />}
                     {role && role === "user" && <AppSidebarNav items={userNavigation as NavItem[]} />}
                     {role === "" && <AppSidebarNav items={userNavigation as NavItem[]} />}
                 </SimpleBar>

@@ -12,6 +12,7 @@ import { HelperProvider } from './contexts/Helper.tsx';
 import { ProjectProvider } from './contexts/ProjectContext.tsx';
 import { LeaveManagementProvider } from './contexts/LeaveManagementContext.tsx';
 import { CredentialProvider } from './contexts/CredentialContext.tsx';
+import { WorkLogProvider } from './contexts/WorkLogContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
@@ -22,13 +23,15 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <CredentialProvider>
               <UserProvider>
                 <ProjectProvider>
-                  <LeaveProvider>
-                    <LeaveManagementProvider>
-                      <StoreProvider>
-                        <App />
-                      </StoreProvider>
-                    </LeaveManagementProvider>
+                  <WorkLogProvider>
+                    <LeaveProvider>
+                      <LeaveManagementProvider>
+                        <StoreProvider>
+                          <App />
+                        </StoreProvider>
+                      </LeaveManagementProvider>
                     </LeaveProvider>
+                  </WorkLogProvider>
                 </ProjectProvider>
               </UserProvider>
             </CredentialProvider>

@@ -4,13 +4,13 @@ import { useAuth } from "./AuthContext";
 import axios from 'axios';
 
 interface ProjectContextType {
-    getProject: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
+    getProject: (page?: number, limit?: number, query?: any, sortField?: string, sortOrder?: string) => Promise<any>;
     fetchProjects: () => Promise<any>;
     getSingleProject: (id: string) => Promise<any>;
     createProject: (addproject: any) => Promise<any>;
     updateProject: (project: any, id: string) => Promise<any>;
     deleteProject: (id: string) => Promise<void>;
-    userProject: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
+    userProject: (page?: number, limit?: number, query?: any, sortField?: string, sortOrder?: string) => Promise<any>;
     getUserProject: () => Promise<any>;
 }
 
@@ -40,7 +40,7 @@ const ProjectProvider: React.FC<ProjectProviderProps> = ({ children }) => {
     };
 
     //getProjects
-    const getProject = async (page: number, limit: number, query: string, sortField: string, sortOrder: string) => {
+    const getProject = async (page?: number, limit?: number, query?: string, sortField?: string, sortOrder?: string) => {
         try {
             let res;
             if (query) {
@@ -129,7 +129,7 @@ const ProjectProvider: React.FC<ProjectProviderProps> = ({ children }) => {
     }
 
     //users project
-    const userProject = async (page: number, limit: number, query: string, sortField: string, sortOrder: string) => {
+    const userProject = async (page?: number, limit?: number, query?: string, sortField?: string, sortOrder?: string) => {
         try {
             let res;
             if (query) {

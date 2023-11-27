@@ -185,10 +185,11 @@ const userGetLeave = async (req: any, res: Response) => {
         const sortOrder: number = parseInt(req.query.sortOrder as string) || -1;
         let sortOptions: { [key: string]: 1 | -1 } = {};
         sortOptions[sortField] = sortOrder === 1 ? 1 : -1;
-        let query: any = {};
+        let query: any = { userId: req.user._id };
 
         if (filter) {
             query = {
+                userId: req.user._id,
                 $or: [
                     { leaveType: { $regex: filter.toLowerCase() } },
                     { status: { $regex: filter.toLowerCase() } },
@@ -200,12 +201,10 @@ const userGetLeave = async (req: any, res: Response) => {
         const skip = (page - 1) * limit;
 
         const currentYear = new Date().getFullYear();
-
         const approvedLeaves = await Leave.find({
             userId: req.user._id,
             status: "approved",
         });
-
         let totalApprovedLeaveDays = 0;
 
         for (const leave of approvedLeaves) {

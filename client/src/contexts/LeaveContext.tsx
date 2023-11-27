@@ -10,7 +10,7 @@ interface LeaveContextType {
     updateLeave: (leaveData: any, id: string) => Promise<any>;
     updateStatus: (status: string, id: string, reasonForLeaveReject?: string) => Promise<void>;
     getLeaveById: (id: string) => Promise<any>;
-    getUserLeave: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
+    getUserLeave: (page?: number, limit?: number, query?: any, sortField?: string, sortOrder?: string) => Promise<any>;
     addUserLeave: (leaveData: any) => Promise<any>;
 }
 
@@ -113,7 +113,7 @@ const LeaveProvider: React.FC<LeaveProviderProps> = ({ children }) => {
     }
 
     //Get User Leave
-    const getUserLeave = async (page: number, limit: number, query: any, sortField: string, sortOrder: string) => {
+    const getUserLeave = async (page?: number, limit?: number, query?: any, sortField?: string, sortOrder?: string) => {
         try {
             let res;
             if (query) {

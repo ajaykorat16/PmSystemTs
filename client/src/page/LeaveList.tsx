@@ -191,7 +191,7 @@ const LeaveList: React.FC<{ title: string }> = ({ title }) => {
                             <CModalHeader>
                                 <CModalTitle>{fullName}</CModalTitle>
                             </CModalHeader>
-                            {/* <CForm onSubmit={handleUpdateStatus}>
+                            <CForm onSubmit={handleUpdateStatus}>
                                 <CModalBody>
                                     <CFormTextarea
                                         id="leave"
@@ -207,7 +207,7 @@ const LeaveList: React.FC<{ title: string }> = ({ title }) => {
                                     </CButton>
                                     <CButton color="primary" onClick={() => handleSubmitReject()}>Submit</CButton>
                                 </CModalFooter>
-                            </CForm> */}
+                            </CForm>
                         </CModal>
                     </div>
                     <div>

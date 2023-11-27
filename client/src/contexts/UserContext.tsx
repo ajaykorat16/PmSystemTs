@@ -12,8 +12,8 @@ interface UserContextType {
     updateProfile: (updateUsers: any) => Promise<any>;
     resetPassword: (password: string) => Promise<any>;
     getAllUsers: (page: number, limit: number, query: any, sortField: string, sortOrder: number) => Promise<any>;
-    getAllEmployee: (page: number, limit: number, query: any, sortField: string, sortOrder: number) => Promise<any>;
-    getAllUsersByBirthMonth: (page: number, limit: number, query?: any) => Promise<any>;
+    getAllEmployee: (page?: number, limit?: number, query?: any, sortField?: string, sortOrder?: number) => Promise<any>;
+    getAllUsersByBirthMonth: (page?: number, limit?: number, query?: any) => Promise<any>;
     userForCredential: () => Promise<any>;
 }
 
@@ -186,7 +186,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const getAllEmployee = async (page: number, limit: number, query: any, sortField: string, sortOrder: number) => {
+    const getAllEmployee = async (page?: number, limit?: number, query?: any, sortField?: string, sortOrder?: number) => {
         try {
             let res;
             if (query) {
@@ -202,7 +202,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const getAllUsersByBirthMonth = async (page: number, limit: number, query: any) => {
+    const getAllUsersByBirthMonth = async (page?: number, limit?: number, query?: any) => {
         try {
             let res;
             if (query) {
