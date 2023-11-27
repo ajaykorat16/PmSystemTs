@@ -11,8 +11,8 @@ interface UserContextType {
     getUserProfile: (id: string) => Promise<any>;
     updateProfile: (updateUsers: any) => Promise<any>;
     resetPassword: (password: string) => Promise<any>;
-    getAllUsers: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
-    getAllEmployee: (page: number, limit: number, query: any, sortField: string, sortOrder: string) => Promise<any>;
+    getAllUsers: (page: number, limit: number, query: any, sortField: string, sortOrder: number) => Promise<any>;
+    getAllEmployee: (page: number, limit: number, query: any, sortField: string, sortOrder: number) => Promise<any>;
     getAllUsersByBirthMonth: (page: number, limit: number, query?: any) => Promise<any>;
     userForCredential: () => Promise<any>;
 }
@@ -170,7 +170,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const getAllUsers = async (page: number, limit: number, query: any, sortField: string, sortOrder: string) => {
+    const getAllUsers = async (page: number, limit: number, query: any, sortField: string, sortOrder: number) => {
         try {
             let res;
             if (query) {
@@ -186,7 +186,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
     };
 
-    const getAllEmployee = async (page: number, limit: number, query: any, sortField: string, sortOrder: string) => {
+    const getAllEmployee = async (page: number, limit: number, query: any, sortField: string, sortOrder: number) => {
         try {
             let res;
             if (query) {

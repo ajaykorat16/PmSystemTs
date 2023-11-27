@@ -42,7 +42,7 @@ const UserList: React.FC<UserListProps> = ({ title }) => {
         dateOfJoining: "",
     })
 
-    const fetchUsers = async (currentPage: number, rowsPerPage: number, query: string, sortField: string, sortOrder: string) => {
+    const fetchUsers = async (currentPage: number, rowsPerPage: number, query: string, sortField: string, sortOrder: number) => {
         setIsLoading(true);
         let userData;
         if (auth.user?.role === "admin") {
@@ -98,7 +98,7 @@ const UserList: React.FC<UserListProps> = ({ title }) => {
         const order = e.sortOrder!;
         setSortField(field);
         setSortOrder(order);
-        fetchUsers(currentPage, rowsPerPage, globalFilterValue, field, order.toString());
+        fetchUsers(currentPage, rowsPerPage, globalFilterValue, field, order);
     };
 
     const handleLogin = async (id: string) => {
