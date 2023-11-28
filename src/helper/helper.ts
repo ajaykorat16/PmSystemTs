@@ -86,7 +86,7 @@ const sendMailForLeaveStatus = async (
 ): Promise<{ error: boolean; message: string }> => {
     try {
         const body: string = await new Promise<string>((resolve, reject) => {
-            fs.readFile('../templates/email_leaveResponse.html', 'utf8', (err, content) => {
+            fs.readFile('src/templates/email_leaveResponse.html', 'utf8', (err, content) => {
                 if (err) {
                     console.log("Mail.sendLeaveRequest [ERROR: " + err + " ]");
                     reject(err);
@@ -152,7 +152,7 @@ const sendMailForLeaveRequest = async (
 ): Promise<{ error: boolean; message: string }> => {
     try {
         const body: string = await new Promise<string>((resolve, reject) => {
-            fs.readFile('../templates/email_leaveRequest.html', 'utf8', (err, content) => {
+            fs.readFile('src/templates/email_leaveRequest.html', 'utf8', (err, content) => {
                 if (err) {
                     console.log("Mail.sendLeaveRequest [ERROR: " + err + " ]");
                     reject(err);
